@@ -1,0 +1,3368 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZLATNA PIVNICA - Najluksuzniji restoran</title>
+    <meta name="description" content="ZLATNA PIVNICA — najluksuzniji srpski restoran u srcu Beograda. Rezervišite mesto u legendi.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍷</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Your existing styles remain the same */
+        :root {
+            --crvena: #7B1123;
+            --zlato: #D4AF37;
+            --crna: #1A1A1A;
+            --krem: #F5F5F5;
+            --drvo: #5C4033;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: var(--crna);
+            color: var(--krem);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--zlato);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--zlato);
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            animation: glow 3s infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.8); }
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--krem);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--zlato);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after, .nav-links a.active:after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--zlato);
+        }
+        
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .lang-switch button {
+            background: transparent;
+            border: 1px solid var(--zlato);
+            color: var(--zlato);
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+        
+        .lang-switch button.active {
+            background: var(--zlato);
+            color: var(--crna);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--zlato);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Pages Container */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 70px;
+            animation: pageFadeIn 0.5s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes pageFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* HERO PAGE */
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&h=1080&fit=crop') center/cover no-repeat;
+            filter: brightness(0.4);
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(123,17,35,0.4) 0%, rgba(26,26,26,0.8) 100%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            z-index: 2;
+            padding: 2rem;
+            max-width: 900px;
+        }
+        
+        .hero-title {
+            font-size: 4.5rem;
+            color: var(--zlato);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards 0.5s;
+            letter-spacing: 3px;
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--krem);
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards 1s;
+            font-style: italic;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--zlato), #F9D877);
+            color: var(--crna);
+            padding: 1rem 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 0;
+            border: 2px solid var(--zlato);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards 1.5s;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
+            letter-spacing: 2px;
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            color: var(--zlato);
+            border: 2px solid var(--zlato);
+        }
+        
+        .cta-secondary:hover {
+            background: var(--zlato);
+            color: var(--crna);
+        }
+        
+        .cta-button:after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+        
+        .cta-button:hover:after {
+            opacity: 1;
+            transform: rotate(45deg) translate(10%, 10%);
+        }
+        
+        .review-form {
+            max-width: 800px;
+            margin: 4rem auto 0;
+            background: rgba(26, 26, 26, 0.8);
+            padding: 3rem;
+            border: 1px solid var(--zlato);
+            transform: perspective(1000px) rotateX(0deg);
+            transition: transform 0.5s ease;
+        }
+        
+        .review-form:hover {
+            transform: perspective(1000px) rotateX(5deg);
+        }
+        
+        .rating-stars {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            font-size: 2rem;
+            justify-content: center;
+        }
+        
+        .rating-stars i {
+            cursor: pointer;
+            color: rgba(212, 175, 55, 0.3);
+            transition: all 0.2s ease;
+        }
+        
+        .rating-stars i.active {
+            color: var(--zlato);
+            transform: scale(1.2);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+        }
+        
+        .rating-stars i:hover {
+            color: var(--zlato);
+            transform: scale(1.3);
+        }
+        
+        .ash-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .ash {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(212, 175, 55, 0.7);
+            border-radius: 50%;
+            opacity: 0;
+            animation: fall 5s infinite linear;
+            filter: blur(1px);
+        }
+        
+        @keyframes fall {
+            0% { 
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0; 
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.4; }
+            100% { 
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0; 
+            }
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        /* Hero Arrow */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--zlato);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+            z-index: 2;
+        }
+        
+        .scroll-down i {
+            color: var(--zlato);
+            font-size: 1.2rem;
+            animation: arrowPulse 1.5s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+        
+        @keyframes arrowPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        /* Hero Additional Content */
+        .hero-additional {
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, transparent, rgba(26,26,26,0.9));
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-reviews {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .hero-reviews h3 {
+            color: var(--zlato);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .featured-reviews {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .featured-review {
+            background: rgba(26, 26, 26, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 1.5rem;
+            max-width: 350px;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+        
+        .featured-review:hover {
+            transform: translateY(-5px);
+            border-color: var(--zlato);
+            background: rgba(123, 17, 35, 0.2);
+        }
+        
+        .featured-review .stars {
+            color: var(--zlato);
+            margin-bottom: 0.5rem;
+        }
+        
+        .featured-review .text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .featured-review .author {
+            color: var(--zlato);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-align: right;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .faq-section h3 {
+            color: var(--zlato);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .faq-item {
+            background: rgba(26, 26, 26, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--zlato);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .faq-question:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+            color: var(--krem);
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 0 1.5rem 1.5rem;
+        }
+        
+        .faq-item.active {
+            border-color: var(--zlato);
+            background: rgba(123, 17, 35, 0.2);
+        }
+        
+        .faq-toggle {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        
+        /* General Section Styles */
+        .section {
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--zlato);
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 2px;
+            background: var(--zlato);
+            margin: 1rem auto;
+            animation: lineExpand 1s ease;
+        }
+        
+        @keyframes lineExpand {
+            from { width: 0; }
+            to { width: 100px; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* MENU PAGE */
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .category-btn {
+            background: transparent;
+            border: 1px solid var(--zlato);
+            color: var(--zlato);
+            padding: 0.7rem 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: var(--zlato);
+            color: var(--crna);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .menu-card {
+            background: rgba(26, 26, 26, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            transform: perspective(1000px) rotateY(0deg);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .menu-card:hover {
+            transform: perspective(1000px) rotateY(5deg) translateY(-10px);
+            border-color: var(--zlato);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            background: rgba(123, 17, 35, 0.2);
+        }
+        
+        .menu-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .menu-card:hover:before {
+            left: 100%;
+        }
+        
+        .menu-card .image {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #2a2a2a, #1a1a1a);
+        }
+        
+        .menu-card .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .menu-card:hover .image img {
+            transform: scale(1.1);
+        }
+        
+        .menu-card .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+        
+        .menu-card .item-name {
+            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--zlato);
+        }
+        
+        .menu-card .item-price {
+            font-size: 1.2rem;
+            color: var(--zlato);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .menu-card .item-description {
+            font-size: 1rem;
+            color: var(--krem);
+            margin-top: 0.5rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        .menu-card .item-details {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            color: rgba(245, 245, 245, 0.8);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed rgba(212, 175, 55, 0.3);
+            flex-grow: 1;
+        }
+        
+        .menu-card:hover .item-details {
+            max-height: 200px;
+            opacity: 1;
+        }
+        
+        .menu-card .wine-pairing {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: rgba(123, 17, 35, 0.3);
+            border-left: 2px solid var(--zlato);
+            font-size: 0.9rem;
+            color: var(--zlato);
+        }
+        
+        /* EVENTS PAGE */
+        .events-background {
+            background: linear-gradient(135deg, var(--drvo), #3e2b22);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 20%);
+        }
+        
+        .rooms-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .room-card {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid var(--zlato);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            background: rgba(123, 17, 35, 0.2);
+        }
+        
+        .room-card .room-image {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #2a2a2a, #1a1a1a);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .room-card .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .room-card:hover .room-image img {
+            transform: scale(1.1);
+        }
+        
+        .room-card h3 {
+            color: var(--zlato);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .room-card .capacity {
+            color: var(--zlato);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .room-card .features {
+            list-style: none;
+            margin-top: 1rem;
+            flex-grow: 1;
+        }
+        
+        .room-card .features li {
+            padding: 0.3rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .room-card .features li:before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--zlato);
+        }
+        
+        .room-card .book-btn {
+            margin-top: 1.5rem;
+            background: transparent;
+            border: 1px solid var(--zlato);
+            color: var(--zlato);
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .room-card .book-btn:hover {
+            background: var(--zlato);
+            color: var(--crna);
+        }
+        
+        /* REVIEWS PAGE */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .review-card {
+            background: rgba(26, 26, 26, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+            transform: rotate(-1deg);
+        }
+        
+        .review-card:nth-child(even) {
+            transform: rotate(1deg);
+        }
+        
+        .review-card:hover {
+            transform: rotate(0deg) scale(1.05);
+            border-color: var(--zlato);
+            background: rgba(123, 17, 35, 0.2);
+        }
+        
+        .review-card .stars {
+            color: var(--zlato);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .review-card .review-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            position: relative;
+            padding-left: 1rem;
+            border-left: 2px solid var(--zlato);
+        }
+        
+        .review-card .reviewer {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--zlato);
+            text-align: right;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .review-card .reviewer-title {
+            font-size: 0.8rem;
+            color: rgba(245, 245, 245, 0.6);
+            font-weight: 400;
+        }
+        
+        /* RESERVATION PAGE */
+       .reservation-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+           
+        .reservation-levels {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+        .calendar-section {
+            background: rgba(26, 26, 26, 0.7);
+            padding: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 5px;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .calendar-nav {
+            background: transparent;
+            border: 1px solid var(--zlato);
+            color: var(--zlato);
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .calendar-nav:hover {
+            background: var(--zlato);
+            color: var(--crna);
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        
+        .calendar-day {
+            aspect-ratio: 1;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .calendar-day:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .calendar-day.available {
+            border-color: var(--zlato);
+            color: var(--zlato);
+        }
+        
+        .calendar-day.selected {
+            background: var(--zlato);
+            color: var(--crna);
+            font-weight: 700;
+        }
+        
+        .calendar-day.today {
+            background: var(--crvena);
+            color: var(--krem);
+        }
+        
+        .time-slots {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .time-slots.active {
+            opacity: 1;
+            max-height: 500px;
+        }
+        
+        .time-slot {
+            padding: 0.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: transparent;
+            color: var(--krem);
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.2s ease;
+        }
+        
+        .time-slot:hover {
+            border-color: var(--zlato);
+            color: var(--zlato);
+        }
+        
+        .time-slot.selected {
+            background: var(--zlato);
+            color: var(--crna);
+        }
+        
+        .reservation-form-section {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reservation-form-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 48%, rgba(212, 175, 55, 0.05) 50%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(212, 175, 55, 0.05) 50%, transparent 52%);
+            background-size: 10px 10px;
+            pointer-events: none;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-group label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: var(--zlato);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .form-group input, 
+        .form-group select,
+        .form-group textarea {
+            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: var(--krem);
+            padding: 0.8rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--zlato);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+            background: rgba(20, 20, 20, 0.8);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin: 1rem 0;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+        }
+        
+        .checkbox-group input {
+            accent-color: var(--zlato);
+            width: 1.2rem;
+            height: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, var(--zlato), #F9D877);
+            color: var(--crna);
+            border: none;
+            padding: 1rem 3rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
+            letter-spacing: 2px;
+        }
+        
+        .submit-btn:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        
+        .submit-btn:hover:after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* HERITAGE PAGE */
+        .heritage-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1920&h=1080&fit=crop') center/cover no-repeat;
+            opacity: 0.15;
+            z-index: -1;
+            filter: brightness(0.6);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--zlato), transparent);
+            animation: lineDraw 2s ease;
+        }
+        
+        @keyframes lineDraw {
+            from { height: 0; }
+            to { height: 100%; }
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 3rem;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+            padding-left: 3rem;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item:hover .year {
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+        }
+        
+        .timeline-item .year {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--zlato);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item .content {
+            background: rgba(26, 26, 26, 0.7);
+            padding: 1.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 2px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:nth-child(odd) .content:after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 30px;
+            width: 10px;
+            height: 10px;
+            background: var(--zlato);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:nth-child(even) .content:after {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 30px;
+            width: 10px;
+            height: 10px;
+            background: var(--zlato);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover .content {
+            background: rgba(123, 17, 35, 0.3);
+            border-color: var(--zlato);
+        }
+        
+        .timeline-item .content h3 {
+            color: var(--zlato);
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* CONTACT PAGE */
+        .contact-reservation-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 3rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-info:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.1), transparent 50%);
+            pointer-events: none;
+        }
+        
+        .contact-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            padding-left: 1rem;
+            border-color: var(--zlato);
+        }
+        
+        .contact-item h3 {
+            color: var(--zlato);
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        .contact-item p, .contact-item a {
+            color: var(--krem);
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-item a:hover {
+            color: var(--zlato);
+        }
+        
+        /* Google Map Container */
+        .map-container {
+            margin-top: 2rem;
+            height: 300px;
+            background: #1a1a1a;
+            border: 2px solid var(--zlato);
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        
+        .google-map-iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: #0a0a0a;
+            padding: 3rem 2rem 1.5rem;
+            border-top: 1px solid var(--zlato);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-column h3 {
+            color: var(--zlato);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .footer-column p, 
+        .footer-column a {
+            color: rgba(245, 245, 245, 0.8);
+            text-decoration: none;
+            display: block;
+            padding: 0.3rem 0;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .footer-column a:hover {
+            color: var(--zlato);
+            padding-left: 0.5rem;
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--zlato);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            color: var(--zlato);
+        }
+        
+        .social-links a:hover {
+            background: var(--zlato);
+            color: var(--crna);
+            transform: translateY(-3px) rotate(10deg);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            color: rgba(245, 245, 245, 0.6);
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* GALLERY MODAL */
+        .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .gallery-modal.active {
+            display: flex;
+        }
+        
+        .gallery-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            animation: zoomIn 0.3s ease;
+        }
+        
+        .gallery-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border: 2px solid var(--zlato);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+        
+        .gallery-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: var(--zlato);
+            border: none;
+            color: var(--crna);
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-close:hover {
+            transform: rotate(90deg);
+            background: var(--crvena);
+            color: var(--krem);
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        /* LOADING SCREEN */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--crna);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-logo {
+            font-size: 3rem;
+            color: var(--zlato);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            animation: pulseLogo 1.5s infinite;
+        }
+        
+        .loading-bar {
+            width: 200px;
+            height: 2px;
+            background: rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading-bar:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: var(--zlato);
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes pulseLogo {
+            0%, 100% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+            50% { text-shadow: 0 0 25px rgba(212, 175, 55, 0.8); }
+        }
+        
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 3.5rem; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .reservation-container,
+            .contact-reservation-container {
+                grid-template-columns: 1fr;
+            }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                text-align: left !important;
+                padding: 1rem 2rem !important;
+            }
+            .timeline:before { left: 20px; }
+            .timeline-item:nth-child(odd) .content:after,
+            .timeline-item:nth-child(even) .content:after {
+                left: -10px !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .section-title { font-size: 2.2rem; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .reservation-levels { flex-direction: column; }
+            .level-btn { width: 100%; }
+            .form-row { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .social-links { justify-content: center; }
+            .review-card { transform: rotate(0); }
+            .review-card:nth-child(even) { transform: rotate(0); }
+            .featured-reviews { flex-direction: column; align-items: center; }
+            .hero-additional { padding: 2rem 1rem; }
+        }
+        
+        /* Mobile Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: var(--crna);
+            border-bottom: 1px solid var(--zlato);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            z-index: 999;
+            padding: 1.5rem;
+            display: none;
+        }
+        
+        .mobile-nav.active {
+            transform: translateY(0);
+            display: block;
+        }
+        
+        .mobile-nav .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .mobile-nav .lang-switch {
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+        
+        /* Utility Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .glow {
+            animation: glow 3s infinite;
+        }
+        
+        .spin {
+            animation: spin 3s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Additional Content Styles */
+        .math-section {
+            background: rgba(26, 26, 26, 0.9);
+            padding: 3rem;
+            margin: 4rem 0;
+            border: 1px solid var(--zlato);
+            text-align: center;
+        }
+
+        .math-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: 'Courier New', monospace;
+            color: var(--zlato);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .event-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .event-photo {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--zlato);
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .event-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .event-photo:hover img {
+            transform: scale(1.1);
+        }
+
+        .event-photo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .chef-card {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid var(--zlato);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .chef-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--zlato);
+            flex-shrink: 0;
+        }
+
+        .chef-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .chef-info h4 {
+            color: var(--zlato);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chef-info p {
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .wine-list {
+            columns: 2;
+            column-gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .wine-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(26, 26, 26, 0.7);
+            border-left: 2px solid var(--zlato);
+            transition: all 0.3s ease;
+        }
+
+        .wine-item:hover {
+            transform: translateX(5px);
+            background: rgba(123, 17, 35, 0.2);
+        }
+
+        .wine-item h5 {
+            color: var(--zlato);
+            margin-bottom: 0.3rem;
+        }
+
+        .wine-item p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .alert-box {
+            background: rgba(123, 17, 35, 0.3);
+            border: 1px solid var(--zlato);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .alert-box h4 {
+            color: var(--zlato);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Translation classes */
+        .lang-sr { display: none; }
+        .lang-en { display: none; }
+        
+        body.sr .lang-sr { display: inline; }
+        body.en .lang-en { display: inline; }
+        
+        /* Hide elements based on language */
+        body.sr [data-lang="en"] { display: none !important; }
+        body.en [data-lang="sr"] { display: none !important; }
+    </style>
+</head>
+<body class="sr">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">
+            <span class="lang-sr">ZLATNA PIVNICA</span>
+            <span class="lang-en">GOLDEN BREWHOUSE</span>
+        </div>
+        <div class="loading-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="mainNav">
+        <div class="logo" onclick="showPage('hero')">
+            <span class="lang-sr">ZLATNA PIVNICA</span>
+            <span class="lang-en">GOLDEN BREWHOUSE</span>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a onclick="showPage('hero')" class="active">
+                <span class="lang-sr">Početna</span>
+                <span class="lang-en">Home</span>
+            </a></li>
+            <li><a onclick="showPage('menu')">
+                <span class="lang-sr">Jelovnik</span>
+                <span class="lang-en">Menu</span>
+            </a></li>
+            <li><a onclick="showPage('events')">
+                <span class="lang-sr">Događaji</span>
+                <span class="lang-en">Events</span>
+            </a></li>
+            <li><a onclick="showPage('heritage')">
+                <span class="lang-sr">Nasleđe</span>
+                <span class="lang-en">Heritage</span>
+            </a></li>
+            <li><a onclick="showPage('reservation')">
+                <span class="lang-sr">Rezervacije</span>
+                <span class="lang-en">Reservations</span>
+            </a></li>
+        </ul>
+
+        <div class="lang-switch">
+            <button id="langSr" class="active" onclick="switchLanguage('sr')">SR</button>
+            <button id="langEn" onclick="switchLanguage('en')">EN</button>
+        </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="nav-links">
+            <li><a onclick="showPage('hero')">
+                <span class="lang-sr">Početna</span>
+                <span class="lang-en">Home</span>
+            </a></li>
+            <li><a onclick="showPage('menu')">
+                <span class="lang-sr">Jelovnik</span>
+                <span class="lang-en">Menu</span>
+            </a></li>
+            <li><a onclick="showPage('events')">
+                <span class="lang-sr">Događaji</span>
+                <span class="lang-en">Events</span>
+            </a></li>
+            <li><a onclick="showPage('heritage')">
+                <span class="lang-sr">Nasleđe</span>
+                <span class="lang-en">Heritage</span>
+            </a></li>
+            <li><a onclick="showPage('reservation')">
+                <span class="lang-sr">Rezervacije</span>
+                <span class="lang-en">Reservations</span>
+            </a></li>
+        </ul>
+        <div class="lang-switch">
+            <button id="langSrMobile" class="active" onclick="switchLanguage('sr')">SR</button>
+            <button id="langEnMobile" onclick="switchLanguage('en')">EN</button>
+        </div>
+    </div>
+
+    <!-- HERO PAGE -->
+    <div class="page active" id="hero">
+        <section class="hero-section">
+            <div class="hero-background"></div>
+            <div class="hero-overlay"></div>
+            <div class="ash-particles" id="ashParticles"></div>
+            
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="lang-sr">ZLATNA PIVNICA</span>
+                    <span class="lang-en">GOLDEN BREWHOUSE</span>
+                </h1>
+                <p class="hero-subtitle">
+                    <span class="lang-sr">Gde se vekovima peku legende</span>
+                    <span class="lang-en">Where legends are baked for centuries</span>
+                </p>
+                <div style="margin-top: 2rem;">
+                    <a onclick="showPage('reservation')" class="cta-button">
+                        <span class="lang-sr">Rezervišite svoje mesto</span>
+                        <span class="lang-en">Reserve your seat</span>
+                    </a>
+                    <a onclick="showPage('menu')" class="cta-button cta-secondary">
+                        <span class="lang-sr">Pogledajte jelovnik</span>
+                        <span class="lang-en">View menu</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="scroll-down" onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'})">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+        </section>
+        
+        <!-- Additional Hero Content -->
+        <section class="hero-additional">
+            <!-- Featured Reviews -->
+            <div class="hero-reviews fade-in">
+                <h3>
+                    <span class="lang-sr">Šta kažu naši gosti</span>
+                    <span class="lang-en">What our guests say</span>
+                </h3>
+                <div class="featured-reviews">
+                    <div class="featured-review">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div class="text">
+                            <span class="lang-sr">"Najbolje iskustvo u životu! Pečenje je bilo savršeno, a usluga na kraljevskom nivou."</span>
+                            <span class="lang-en">"Best experience of my life! The roast was perfect, and the service was royal level."</span>
+                        </div>
+                        <div class="author">Jelena Marković</div>
+                    </div>
+                    <div class="featured-review">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div class="text">
+                            <span class="lang-sr">"Vinski podrum je magičan! Somelje je preporučio perfektno vino uz naš meni."</span>
+                            <span class="lang-en">"The wine cellar is magical! The sommelier recommended perfect wine for our menu."</span>
+                        </div>
+                        <div class="author">Marko Petrović</div>
+                    </div>
+                    <div class="featured-review">
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="text">
+                            <span class="lang-sr">"Atmosfera je neverovatna. Oseti se istorija u svakom detalju."</span>
+                            <span class="lang-en">"The atmosphere is incredible. You can feel history in every detail."</span>
+                        </div>
+                        <div class="author">Anna Schmidt</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-form fade-in">
+                    <h3 style="color: var(--zlato); text-align: center; margin-bottom: 1.5rem;">
+                        <span class="lang-sr">Ostavite vaše utiske</span>
+                        <span class="lang-en">Leave your impressions</span>
+                    </h3>
+                    <form id="reviewForm">
+                        <div class="form-group">
+                            <label>
+                                <span class="lang-sr">Vaše ime</span>
+                                <span class="lang-en">Your name</span>
+                            </label>
+                            <input type="text" id="reviewName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <span class="lang-sr">Email</span>
+                                <span class="lang-en">Email</span>
+                            </label>
+                            <input type="email" id="reviewEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <span class="lang-sr">Ocena</span>
+                                <span class="lang-en">Rating</span>
+                            </label>
+                            <div class="rating-stars" id="ratingStars">
+                                <i class="fas fa-star" data-rating="1"></i>
+                                <i class="fas fa-star" data-rating="2"></i>
+                                <i class="fas fa-star" data-rating="3"></i>
+                                <i class="fas fa-star" data-rating="4"></i>
+                                <i class="fas fa-star" data-rating="5"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <span class="lang-sr">Vaša recenzija</span>
+                                <span class="lang-en">Your review</span>
+                            </label>
+                            <textarea id="reviewText" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <span class="lang-sr">Pošaljite recenziju</span>
+                            <span class="lang-en">Submit review</span>
+                        </button>
+                    </form>
+                </div>
+                <br>
+            
+            <!-- FAQ Section -->
+            <div class="faq-section fade-in">
+                <h3>
+                    <span class="lang-sr">Često postavljana pitanja</span>
+                    <span class="lang-en">Frequently asked questions</span>
+                </h3>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="lang-sr">Koliko dana unapred treba da rezervišem?</span>
+                        <span class="lang-en">How many days in advance should I reserve?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <span class="lang-sr">Preporučujemo rezervaciju 3-7 dana unapred, naročito za vikende i specijalne događaje. Za kraljevski tretman, potrebno je rezervisati minimum 14 dana unapred.</span>
+                        <span class="lang-en">We recommend reserving 3-7 days in advance, especially for weekends and special events. For royal treatment, you need to reserve at least 14 days in advance.</span>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="lang-sr">Da li imate poseban meni za alergičare?</span>
+                        <span class="lang-en">Do you have a special menu for allergy sufferers?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <span class="lang-sr">Da, imamo poseban meni za goste sa alergijama. Molimo Vas da prilikom rezervacije navedete Vaše alergije i potrudićemo se da prilagodimo jelovnik.</span>
+                        <span class="lang-en">Yes, we have a special menu for guests with allergies. Please mention your allergies when making a reservation and we will adjust the menu.</span>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="lang-sr">Da li primamo kartično plaćanje?</span>
+                        <span class="lang-en">Do you accept card payments?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <span class="lang-sr">Da, primamo sve vrste platnih kartica (Visa, MasterCard, Dina). Takođe, prihvatamo i gotovinu.</span>
+                        <span class="lang-en">Yes, we accept all types of payment cards (Visa, MasterCard, Dina). We also accept cash.</span>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="lang-sr">Da li je moguće organizovati venčanje?</span>
+                        <span class="lang-en">Is it possible to organize a wedding?</span>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <span class="lang-sr">Naravno! Naše sale su idealne za venčanja do 50 gostiju. Posedujemo i terasu sa pogledom na reku. Za više informacija, kontaktirajte nas direktno.</span>
+                        <span class="lang-en">Of course! Our rooms are ideal for weddings up to 50 guests. We also have a terrace with a view of the river. For more information, contact us directly.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chef Section -->
+            <div class="chef-card fade-in">
+                <div class="chef-photo">
+                    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&h=400&fit=crop" alt="Glavni šef">
+                </div>
+                <div class="chef-info">
+                    <h4>Milan Petrović</h4>
+                    <p>
+                        <span class="lang-sr">Glavni šef kuhinje</span>
+                        <span class="lang-en">Head Chef</span>
+                    </p>
+                    <p style="margin-top: 1rem; font-style: italic;">
+                        <span class="lang-sr">"Kuhanje je umjetnost koja zahtijeva strast, preciznost i dušu. Svako jelo je priča koju pričamo sa srcem."</span>
+                        <span class="lang-en">"Cooking is an art that requires passion, precision and soul. Every dish is a story we tell with heart."</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MENU PAGE -->
+    <div class="page" id="menu">
+        <div class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="lang-sr">Naša Kuhinja</span>
+                    <span class="lang-en">Our Kitchen</span>
+                </h2>
+
+              
+                
+                <div class="menu-categories">
+                    <button class="category-btn active" onclick="filterMenu('all')">
+                        <span class="lang-sr">Sve</span>
+                        <span class="lang-en">All</span>
+                    </button>
+                    <button class="category-btn" onclick="filterMenu('zakuska')">
+                        <span class="lang-sr">Predelo</span>
+                        <span class="lang-en">Appetizer</span>
+                    </button>
+                    <button class="category-btn" onclick="filterMenu('supa')">
+                        <span class="lang-sr">Supa dana</span>
+                        <span class="lang-en">Soup of the day</span>
+                    </button>
+                    <button class="category-btn" onclick="filterMenu('roštilj')">
+                        <span class="lang-sr">Roštilj</span>
+                        <span class="lang-en">Grill</span>
+                    </button>
+                    <button class="category-btn" onclick="filterMenu('glavno')">
+                        <span class="lang-sr">Kraljevski glavni</span>
+                        <span class="lang-en">Royal main</span>
+                    </button>
+                    <button class="category-btn" onclick="filterMenu('dezert')">
+                        <span class="lang-sr">Imperijalni dezerti</span>
+                        <span class="lang-en">Imperial desserts</span>
+                    </button>
+                </div>
+
+            
+                  <div style="text-align: center; margin-top: 3rem;">
+                    <p style="color: var(--zlato); font-size: 1.2rem;">
+                        <span class="lang-sr">Cene prikazane u RSD</span>
+                        <span class="lang-en">Prices in RSD</span>
+                    </p>
+                </div>
+            </br>
+                
+                <div class="menu-grid" id="menuGrid">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <p style="color: var(--zlato); font-size: 1.2rem; font-style: italic;">
+                        <i class="fas fa-quote-left" style="margin-right: 0.5rem;"></i>
+                        <span class="lang-sr">Hrana koja govori jezikom tradicije</span>
+                        <span class="lang-en">Food that speaks the language of tradition</span>
+                        <i class="fas fa-quote-right" style="margin-left: 0.5rem;"></i>
+                    </p>
+                </div>
+
+                <!-- Wine List -->
+                <div style="margin-top: 5rem;">
+                    <h3 style="color: var(--zlato); text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif;">
+                        <span class="lang-sr">Vinska Karta</span>
+                        <span class="lang-en">Wine List</span>
+                    </h3>
+                    <div class="wine-list">
+                        <div class="wine-item">
+                            <h5>Žilavka 2018</h5>
+                            <p>
+                                <span class="lang-sr">Hercegovina | Suho belo vino | 12.5% alkohola</span>
+                                <span class="lang-en">Herzegovina | Dry white wine | 12.5% alcohol</span>
+                            </p>
+                        </div>
+                        <div class="wine-item">
+                            <h5>Prokupac 2016</h5>
+                            <p>
+                                <span class="lang-sr">Župa | Suho crveno vino | 13.5% alkohola</span>
+                                <span class="lang-en">Župa | Dry red wine | 13.5% alcohol</span>
+                            </p>
+                        </div>
+                        <div class="wine-item">
+                            <h5>Vranac Reserve</h5>
+                            <p>
+                                <span class="lang-sr">Plantaže | Suho crveno vino | 14% alkohola</span>
+                                <span class="lang-en">Plantaže | Dry red wine | 14% alcohol</span>
+                            </p>
+                        </div>
+                        <div class="wine-item">
+                            <h5>Tamjanika</h5>
+                            <p>
+                                <span class="lang-sr">Župa | Polusuvo belo vino | 12% alkohola</span>
+                                <span class="lang-en">Župa | Semi-dry white wine | 12% alcohol</span>
+                            </p>
+                        </div>
+                        <div class="wine-item">
+                            <h5>Bermet</h5>
+                            <p>
+                                <span class="lang-sr">Smederevo | Poluslatko vino | 16% alkohola</span>
+                                <span class="lang-en">Smederevo | Semi-sweet wine | 16% alcohol</span>
+                            </p>
+                        </div>
+                        <div class="wine-item">
+                            <h5>Cabernet Sauvignon</h5>
+                            <p>
+                                <span class="lang-sr">Vršac | Suho crveno vino | 13.5% alkohola</span>
+                                <span class="lang-en">Vršac | Dry red wine | 13.5% alcohol</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EVENTS PAGE -->
+    <div class="page" id="events">
+        <div class="section">
+            <div class="events-background"></div>
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="lang-sr">Privatni Događaji</span>
+                    <span class="lang-en">Private Events</span>
+                </h2>
+                
+                <div class="alert-box">
+                    <h4><i class="fas fa-star"></i> 
+                        <span class="lang-sr">Specijalna Ponuda</span>
+                        <span class="lang-en">Special Offer</span>
+                    </h4>
+                    <p>
+                        <span class="lang-sr">Za sve rezervacije do 30.06.2025. dobijate 10% popusta na sve proslave!</span>
+                        <span class="lang-en">For all reservations until 06.30.2025, you get 10% off all celebrations!</span>
+                    </p>
+                </div>
+
+                <div class="rooms-container">
+                    <div class="room-card fade-in">
+                        <div class="room-image">
+                            <img src="https://images.unsplash.com/photo-1554679665-f5537f187268?w=800&h=600&fit=crop" alt="Soba cara">
+                        </div>
+                        <h3>
+                            <span class="lang-sr">Soba cara</span>
+                            <span class="lang-en">Emperor's Room</span>
+                        </h3>
+                        <div class="capacity"><i class="fas fa-users"></i> 
+                            <span class="lang-sr">Kapacitet: 12 osoba</span>
+                            <span class="lang-en">Capacity: 12 people</span>
+                        </div>
+                        <ul class="features">
+                            <li class="lang-sr">Stari tapeti iz 19. veka</li>
+                            <li class="lang-en">Old carpets from 19th century</li>
+                            <br>
+                            <li class="lang-sr">Kruna iznad stola</li>
+                            <li class="lang-en">Crown above table</li>
+                            <br>
+                            <li class="lang-sr">Šestoseda kožna garnitura</li>
+                            <li class="lang-en">Six-seater leather suite</li>
+                            <br>
+                            <li class="lang-sr">Ručno oslikani zidovi</li>
+                            <li class="lang-en">Hand-painted walls</li>
+                            <br>
+                            <li class="lang-sr">Kamin u radu</li>
+                            <li class="lang-en">Working fireplace</li>
+                        </ul>
+                        <button class="book-btn" onclick="quickReserve('Soba cara')">
+                            <span class="lang-sr">Rezerviši</span>
+                            <span class="lang-en">Reserve</span>
+                        </button>
+                    </div>
+                    
+                    <div class="room-card fade-in">
+                        <div class="room-image">
+                            <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=600&fit=crop" alt="Vinski podrum">
+                        </div>
+                        <h3>
+                            <span class="lang-sr">Vinski podrum</span>
+                            <span class="lang-en">Wine Cellar</span>
+                        </h3>
+                        <div class="capacity"><i class="fas fa-users"></i> 
+                            <span class="lang-sr">Kapacitet: 8 osoba</span>
+                            <span class="lang-en">Capacity: 8 people</span>
+                        </div>
+                        <ul class="features">
+                            <li class="lang-sr">Staklena vitrina sa retkim vinarima</li>
+                            <li class="lang-en">Glass display with rare wines</li>
+                            <br>
+                            <li class="lang-sr">Ogromni hrastov sto</li>
+                            <li class="lang-en">Huge oak table</li>
+                            <br>
+                            <li class="lang-sr">Temperatura 12°C stalno</li>
+                            <li class="lang-en">Constant 12°C temperature</li>
+                            <br>
+                            <li class="lang-sr">Interaktivna vinska karta</li>
+                            <li class="lang-en">Interactive wine list</li>
+                            <br>
+                            <li class="lang-sr">Termohigrometar</li>
+                            <li class="lang-en">Thermohygrometer</li>
+                        </ul>
+                        <button class="book-btn" onclick="quickReserve('Vinski podrum')">
+                            <span class="lang-sr">Rezerviši</span>
+                            <span class="lang-en">Reserve</span>
+                        </button>
+                    </div>
+                    
+                    <div class="room-card fade-in">
+                        <div class="room-image">
+                            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&h=600&fit=crop" alt="Terasa na reku">
+                        </div>
+                        <h3>
+                            <span class="lang-sr">Terasa na reku</span>
+                            <span class="lang-en">River Terrace</span>
+                        </h3>
+                        <div class="capacity"><i class="fas fa-users"></i> 
+                            <span class="lang-sr">Kapacitet: 20 osoba</span>
+                            <span class="lang-en">Capacity: 20 people</span>
+                        </div>
+                        <ul class="features">
+                            <li class="lang-sr">Pogled na Dunav i Kalemegdan</li>
+                            <li class="lang-en">View of Danube and Kalemegdan</li>
+                            <br>
+                            <li class="lang-sr">Zlatno osvetljenje</li>
+                            <li class="lang-en">Golden lighting</li>
+                            <br>
+                            <li class="lang-sr">Grejani pod za zimu</li>
+                            <li class="lang-en">Heated floor for winter</li>
+                            <br>
+                            <li class="lang-sr">Zvučna izolacija</li>
+                            <li class="lang-en">Sound isolation</li>
+                            <br>
+                            <li class="lang-sr">Led rasveta</li>
+                            <li class="lang-en">LED lighting</li>
+                        </ul>
+                        <button class="book-btn" onclick="quickReserve('Terasa na reku')">
+                            <span class="lang-sr">Rezerviši</span>
+                            <span class="lang-en">Reserve</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="fade-in" style="margin-top: 4rem; text-align: center; background: rgba(26,26,26,0.7); padding: 2rem; border: 1px solid var(--zlato);">
+                    <h3 style="color: var(--zlato); margin-bottom: 1rem;">
+                        <span class="lang-sr">Posebni zahtevi</span>
+                        <span class="lang-en">Special requests</span>
+                    </h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        <span class="lang-sr">Možemo organizovati i:</span>
+                        <span class="lang-en">We can also organize:</span>
+                    </p>
+                    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; font-family: 'Montserrat', sans-serif;">
+                        <span><i class="fas fa-horse"></i> <span class="lang-sr">Dolazak kočijom</span><span class="lang-en">Arrival by carriage</span></span>
+                        <span><i class="fas fa-music"></i> <span class="lang-sr">Svirka uživo</span><span class="lang-en">Live music</span></span>
+                        <span><i class="fas fa-flower"></i> <span class="lang-sr">✿ Cvetni aranžmani</span><span class="lang-en">Flower arrangements</span></span>
+                        <span><i class="fas fa-wine-glass"></i> <span class="lang-sr">Degustacija vina</span><span class="lang-en">Wine tasting</span></span>
+                        <span><i class="fas fa-camera"></i> <span class="lang-sr">Profesionalno fotografisanje</span><span class="lang-en">Professional photography</span></span>
+                        <span><i class="fas fa-microphone"></i> <span class="lang-sr">Bend za svadbe</span><span class="lang-en">Wedding band</span></span>
+                    </div>
+                </div>
+
+                <!-- Event Gallery -->
+                <div style="margin-top: 5rem;">
+    <h3 style="color: var(--zlato); text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif;">
+        <span class="lang-sr">Galerija Događaja</span>
+        <span class="lang-en">Event Gallery</span>
+    </h3>
+    <div class="event-gallery">
+        <!-- Using Unsplash images as placeholders to ensure they load -->
+        <div class="event-photo" onclick="showImageGallery('https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop', 'Svadba u Sobi cara')">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop" alt="Svadba" loading="lazy">
+        </div>
+        <div class="event-photo" onclick="showImageGallery('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=600&fit=crop', 'Degustacija vina')">
+            <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=600&fit=crop" alt="Degustacija" loading="lazy">
+        </div>
+        <div class="event-photo" onclick="showImageGallery('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop', 'Korporativni događaj')">
+            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop" alt="Korporativni" loading="lazy">
+        </div>
+        <div class="event-photo" onclick="showImageGallery('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop', 'Rođendanska proslava')">
+            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop" alt="Rođendan" loading="lazy">
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="page" id="reservation">
+        <div class="section">
+            <div class="container">
+                <h2 class="section-title">Rezervacije</h2>
+                
+                <div class="contact-reservation-container">
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <h3 style="color: var(--zlato); margin-bottom: 2rem; font-size: 2rem;">Kontakt Informacije</h3>
+                        
+                        <div class="contact-item">
+                            <h3><i class="fas fa-map-marker-alt"></i> Adresa</h3>
+                            <p>Ive Andrića 16, Banja Luka</p>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <h3><i class="fas fa-phone"></i> Telefon</h3>
+                            <a href="tel:+381111234567">+381 11 123 4567</a>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <h3><i class="fas fa-envelope"></i> Email</h3>
+                            <a href="mailto:kontakt@zlatnapivnija.rs">kontakt@zlatnapivnija.rs</a>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <h3><i class="fas fa-clock"></i> Radno vreme</h3>
+                            <p>Pon - Čet: 12:00 - 23:00<br>Pet - Sub: 12:00 - 01:00<br>Nedelja: 12:00 - 22:00</p>
+                        </div>
+                        
+                        <div class="map-container">
+                            <iframe 
+                                class="google-map-iframe"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2813.748179101378!2d17.18483331545119!3d44.77233797909831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475e1e4a4b7a3b3b%3A0x7b1a5d5c5b5d5e5f!2sIve%20Andri%C4%87a%2016%2C%20Banja%20Luka%2C%20Bosnia%20and%20Herzegovina!5e0!3m2!1sen!2sus!4v1629999999999!5m2!1sen!2sus" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+                    
+                    <!-- Reservation Form -->
+                    <div class="reservation-form-page">
+                        <h3 style="color: var(--zlato); margin-bottom: 1.5rem; text-align: center;">Rezervišite svoje mesto</h3>
+
+                
+                        <form id="reservationForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Vaše ime</label>
+                                    <input type="text" id="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Telefon</label>
+                                    <input type="tel" id="phone" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="date">Datum</label>
+                                    <input type="date" id="date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="time">Vreme</label>
+                                    <input type="time" id="time" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="guests">Broj osoba</label>
+                                    <select id="guests" required>
+                                        <option value="">Odaberite</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5+</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="level">Nivo rezervacije</label>
+                                <select id="level" required>
+                                    <option value="standard">Standard</option>
+                                    <option value="chef">Sto šefa kuhinje</option>
+                                    <option value="royal">Kraljevski tretman</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="wishes">Posebne želje</label>
+                                <textarea id="wishes" rows="3" placeholder="Alergije, posebni zahtevi, proslave..."></textarea>
+                            </div>
+                            
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="phoneCall">
+                                <label for="phoneCall">Želim da me pozovete telefonom</label>
+                            </div>
+                            
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="flowers">
+                                <label for="flowers">Dodajem buket cveća (+500 RSD)</label>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Pošaljite rezervaciju</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- HERITAGE PAGE -->
+    <div class="page" id="heritage">
+        <div class="section">
+            <div class="heritage-background"></div>
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="lang-sr">Nasleđe & Tradicija</span>
+                    <span class="lang-en">Heritage & Tradition</span>
+                </h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="year">1823</div>
+                        <div class="content">
+                            <h3>
+                                <span class="lang-sr">Osnivanje</span>
+                                <span class="lang-en">Foundation</span>
+                            </h3>
+                            <p>
+                                <span class="lang-sr">Zlatna Pivnica osnovana kao prva pivnica u Beogradu. Mesto okupljanja trgovaca i plemstva.</span>
+                                <span class="lang-en">Zlatna Pivnica founded as the first brewpub in Belgrade. Meeting place for merchants and nobility.</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="year">1901</div>
+                        <div class="content">
+                            <h3>
+                                <span class="lang-sr">Kraljevski ručak</span>
+                                <span class="lang-en">Royal lunch</span>
+                            </h3>
+                            <p>
+                                <span class="lang-sr">Prvi put poslužen kraljevski meni za Petra I Karađorđevića. Recepti sačuvani do danas.</span>
+                                <span class="lang-en">Royal menu first served to Petar I Karađorđević. Recipes preserved to this day.</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="year">1950</div>
+                        <div class="content">
+                            <h3>
+                                <span class="lang-sr">Modernizacija</span>
+                                <span class="lang-en">Modernization</span>
+                            </h3>
+                            <p>
+                                <span class="lang-sr">Restoran obnovljen uz poštovanje tradicije. Uvedeni novi specijaliteti uz stare recepte.</span>
+                                <span class="lang-en">Restaurant renewed with respect for tradition. New specialties introduced alongside old recipes.</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="year">2000</div>
+                        <div class="content">
+                            <h3>
+                                <span class="lang-sr">Restauracija</span>
+                                <span class="lang-en">Restoration</span>
+                            </h3>
+                            <p>
+                                <span class="lang-sr">Temeljna restauracija objekta sa ciljem očuvanja autentičnog izgleda.</span>
+                                <span class="lang-en">Thorough restoration of the building with the goal of preserving its authentic appearance.</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="year">2025</div>
+                        <div class="content">
+                            <h3>
+                                <span class="lang-sr">Luksuzni restoran</span>
+                                <span class="lang-en">Luxury restaurant</span>
+                            </h3>
+                            <p>
+                                <span class="lang-sr">Ponovo otvoren kao najluksuzniji restoran Srbije. Čuvar tradicije i simbol elegancije.</span>
+                                <span class="lang-en">Reopened as the most luxurious restaurant in Serbia. Guardian of tradition and symbol of elegance.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in" style="margin-top: 4rem; max-width: 800px; margin-left: auto; margin-right: auto; background: rgba(26,26,26,0.8); padding: 3rem; border: 1px solid var(--zlato); text-align: center;">
+                    <h3 style="color: var(--zlato); margin-bottom: 1rem;">
+                        <span class="lang-sr">Reč šefa kuhinje</span>
+                        <span class="lang-en">Chef's words</span>
+                    </h3>
+                    <p style="font-style: italic; font-size: 1.2rem; line-height: 1.8; margin-bottom: 1rem;">
+                        <span class="lang-sr">"Svako jelo priča priču. Svaki zalogaj je putovanje kroz vreme. Kada dodirnete tanjir, dodirujete istoriju."</span>
+                        <span class="lang-en">"Every dish tells a story. Every bite is a journey through time. When you touch the plate, you touch history."</span>
+                    </p>
+                    <p style="color: var(--zlato); font-weight: 600;">- Milan Petrović, <span class="lang-sr">glavni šef kuhinje</span><span class="lang-en">head chef</span></p>
+                </div>
+
+                <div style="margin-top: 4rem; text-align: center;">
+                    <h3 style="color: var(--zlato); font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 2rem;">
+                        <span class="lang-sr">Naša Misija</span>
+                        <span class="lang-en">Our Mission</span>
+                    </h3>
+                    <p style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8;">
+                        <span class="lang-sr">"Da sačuvamo tradicionalne recepte i prenesemo ih na nove generacije, pružajući svakom gostu nezaboravno iskustvo koje spaja prošlost i sadašnjost kroz vrhunsku uslugu i autentične ukuse."</span>
+                        <span class="lang-en">"To preserve traditional recipes and pass them on to new generations, providing each guest with an unforgettable experience that connects past and present through excellent service and authentic flavors."</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>
+                    <span class="lang-sr">ZLATNA PIVNIJA</span>
+                    <span class="lang-en">GOLDEN BREWHOUSE</span>
+                </h3>
+                <p>
+                    <span class="lang-sr">Najluksuzniji restoran u Srbiji.<br>Gde se vekovima peču legende.</span>
+                    <span class="lang-en">The most luxurious restaurant in Serbia.<br>Where legends are baked for centuries.</span>
+                </p>
+                <div class="social-links">
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>
+                    <span class="lang-sr">Adresa</span>
+                    <span class="lang-en">Address</span>
+                </h3>
+                <p>Ive Andrića 16<br>Banja Luka, Bosna i Hercegovina</p>
+                <p style="margin-top: 1rem;"><i class="fas fa-phone"></i> +381 11 123 4567</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>
+                    <span class="lang-sr">Radno vreme</span>
+                    <span class="lang-en">Working hours</span>
+                </h3>
+                <p>
+                    <span class="lang-sr">Pon - Čet: 12:00 - 23:00</span>
+                    <span class="lang-en">Mon - Thu: 12:00 - 23:00</span>
+                </p>
+                <p>
+                    <span class="lang-sr">Pet - Sub: 12:00 - 01:00</span>
+                    <span class="lang-en">Fri - Sat: 12:00 - 01:00</span>
+                </p>
+                <p>
+                    <span class="lang-sr">Nedelja: 12:00 - 22:00</span>
+                    <span class="lang-en">Sunday: 12:00 - 22:00</span>
+                </p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>
+                    <span class="lang-sr">Brzi linkovi</span>
+                    <span class="lang-en">Quick links</span>
+                </h3>
+                <a onclick="showPage('menu')">
+                    <span class="lang-sr">Jelovnik</span>
+                    <span class="lang-en">Menu</span>
+                </a>
+                <a onclick="showPage('reservation')">
+                    <span class="lang-sr">Rezervacije</span>
+                    <span class="lang-en">Reservations</span>
+                </a>
+                <a onclick="showPage('events')">
+                    <span class="lang-sr">Događaji</span>
+                    <span class="lang-en">Events</span>
+                </a>
+                <a onclick="showPage('heritage')">
+                    <span class="lang-sr">Nasleđe</span>
+                    <span class="lang-en">Heritage</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <span class="lang-sr">&copy; 2025 ZLATNA PIVNICA. Sva prava zadržana. ZLATNA PIVNICA — jer neki trenuci zaslužuju zlatnu okvir.</span>
+            <span class="lang-en">&copy; 2025 GOLDEN BREWHOUSE. All rights reserved. GOLDEN BREWHOUSE — because some moments deserve a golden frame.</span>
+        </div>
+    </footer>
+
+    <!-- Gallery Modal -->
+    <div class="gallery-modal" id="galleryModal">
+        <div class="gallery-content">
+            <button class="gallery-close" onclick="closeGallery()">&times;</button>
+            <img id="galleryImage" src="" alt="Galerija slika">
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentLang = 'sr';
+        let selectedLevel = 'standard';
+        let selectedDate = null;
+        let selectedTime = null;
+        let soundEnabled = false;
+        let selectedRating = 0;
+        
+        // Menu data with image URLs
+        const menuData = {
+            zakuska: [
+                {
+                    name_sr: 'Kajmak sa Medom', name_en: 'Butter with Honey',
+                    price: 1200,
+                    description_sr: 'Svježi planinski kajmak sa bagremovim medom i orasima',
+                    description_en: 'Fresh mountain butter with acacia honey and walnuts',
+                    details_sr: 'Sastojci: Kajmak sa Zlatibora, med sa Fruške gore, orasi iz Vojvodine, jestivo zlato.',
+                    details_en: 'Ingredients: Butter from Zlatibor, honey from Fruška Gora, walnuts from Vojvodina, edible gold.',
+                    pairing_sr: 'Preporučeno vino: Bermet',
+                    pairing_en: 'Recommended wine: Bermet',
+                    image: 'c:\\Users\\veri\\Desktop\\NAPA Restaurant\\images\\kajmak.jpg'
+                },
+                {
+                    name_sr: 'Pršuta sa Sirevima', name_en: 'Ham with Cheeses',
+                    price: 1800,
+                    description_sr: 'Kraljevska paleta domaćih pršuta i sireva',
+                    description_en: 'Royal palette of domestic hams and cheeses',
+                    details_sr: 'Sastojci: Kravlji sir iz sela Pranjani, ovčiji sir iz Zlatibora, pršut od mangulice, sušene smokve, džem od šljive.',
+                    details_en: 'Ingredients: Cow cheese from Pranjani village, sheep cheese from Zlatibor, mangulica ham, dried figs, plum jam.',
+                    pairing_sr: 'Preporučeno vino: Vranac',
+                    pairing_en: 'Recommended wine: Vranac',
+                    image: 'c:\\Users\\veri\\Desktop\\NAPA Restaurant\\images\\prsuta.jpg'
+                }
+            ],
+            supa: [
+                {
+                    name_sr: 'Riblja čorba', name_en: 'Fish Soup',
+                    price: 1500,
+                    description_sr: 'Tradicionana vojvođanska čorba od pastrmke',
+                    description_en: 'Traditional Vojvodina trout soup',
+                    details_sr: 'Sastojci: Pastrmka iz Uvca, beli luk, crni luk, začinsko bilje sa Fruške gore, krompir.',
+                    details_en: 'Ingredients: Trout from Uvac, garlic, onion, herbs from Fruška Gora, potatoes.',
+                    pairing_sr: 'Preporučeno vino: Tamjanika',
+                    pairing_en: 'Recommended wine: Tamjanika',
+                    image: 'c:\\Users\\veri\\Desktop\\NAPA Restaurant\\images\\riblja.jpeg'
+                }
+            ],
+            roštilj: [
+                {
+                    name_sr: 'Pečenje jagnjetina', name_en: 'Roast Lamb',
+                    price: 3500,
+                    description_sr: 'Priprema se 8 sati na ugalju, uz biljke sa Fruške gore',
+                    details_sr: 'Sastojci: Janjetina sa Zlatibora, organsko bilje, tucana paprika, luk.',
+                    pairing_sr: 'Preporučeno vino: Prokupac 2018',
+                    image: 'c:\\Users\\veri\\Desktop\\NAPA Restaurant\\images\\pecenje.jpeg',
+                    // English equivalents
+                    name_en: 'Roast Lamb', 
+                    description_en: 'Prepared for 8 hours on charcoal, with herbs from Fruška Gora',
+                    details_en: 'Ingredients: Lamb from Zlatibor, organic herbs, crushed paprika, onion.',
+                    pairing_en: 'Recommended wine: Prokupac 2018'
+                },
+                {
+                    name_sr: 'Ćevapi', name_en: 'Ćevapi',
+                    price: 1200,
+                    description_sr: 'Kraljevski ćevapi od junetine i jagnjetine',
+                    description_en: 'Royal ćevapi of beef and lamb',
+                    details_sr: 'Sastojci: Meso sa pašnjaka Homolja, začini tajne recepture, somun.',
+                    details_en: 'Ingredients: Meat from Homolje pastures, secret recipe spices, somun bread.',
+                    pairing_sr: 'Preporučeno vino: Merlot',
+                    pairing_en: 'Recommended wine: Merlot',
+                    image: 'c:\\Users\\veri\\Desktop\\NAPA Restaurant\\images\\cevapi.jpg'
+                }
+            ],
+            glavno: [
+                {
+                    name_sr: 'Jagnjetina pod sačem', name_en: 'Lamb under the Bell',
+                    price: 4200,
+                    description_sr: 'Priprema u zemljanom sudu ispod žara',
+                    details_sr: 'Sastojci: Jagnjetina sa Zlatibora, krompir, šargarepa, luk, vino. Vreme pripreme: 4 sata.',
+                    pairing_sr: 'Preporučeno vino: Žilavka',
+                    image: 'c:\\Users\\veri\\Desktop\\NAPA Restaurant\\images\\janje.jpeg',
+                    name_en: 'Lamb under the Bell',
+                    description_en: 'Prepared in clay pot under the embers',
+                    details_en: 'Ingredients: Lamb from Zlatibor, potatoes, carrots, onion, wine. Preparation time: 4 hours.',
+                    pairing_en: 'Recommended wine: Žilavka'
+                },
+                {
+                    name_sr: 'Paun na ražnju', name_en: 'Peacock on the Spit',
+                    price: 5500,
+                    description_sr: 'Specijalitet za posebne prilike',
+                    details_sr: 'Sastojci: Paun, začinsko bilje, krompir, šargarepa. Priprema: 6 sati.',
+                    pairing_sr: 'Preporučeno vino: Cabernet Sauvignon',
+                    image: 'c:\\Users\\veri\\Desktop\\NAPA Restaurant\\images\\paun.jpg',
+                    name_en: 'Peacock on the Spit',
+                    description_en: 'Specialty for special occasions',
+                    details_en: 'Ingredients: Peacock, herbs, potatoes, carrots. Preparation: 6 hours.',
+                    pairing_en: 'Recommended wine: Cabernet Sauvignon'
+                }
+            ],
+            dezert: [
+                {
+                    name_sr: 'Tufahije', name_en: 'Tufahije',
+                    price: 900,
+                    description_sr: 'Dunje punjene orasima u sirupu',
+                    details_en: 'Quinces stuffed with walnuts in syrup',
+                    details_sr: 'Sastojci: Dunje iz Vojvodine, orasi, šećer, vanila, šlag.',
+                    details_en: 'Ingredients: Quinces from Vojvodina, walnuts, sugar, vanilla, whipped cream.',
+                    pairing_sr: 'Preporučeno vino: Bermet',
+                    pairing_en: 'Recommended wine: Bermet',
+                    image: 'c:\\Users\\veri\\Desktop\\NAPA Restaurant\\images\\tufas.jpg'
+                },
+                {
+                    name_sr: 'Kraljevska baklava', name_en: 'Royal Baklava',
+                    price: 1200,
+                    description_sr: 'Baklava sa zlatom i orasima',
+                    details_sr: 'Sastojci: Testo, orasi, med, šećer, jestivo zlato.',
+                    pairing_sr: 'Preporučeno vino: Bermet',
+                    image: 'c:\\Users\\veri\\Desktop\\NAPA Restaurant\\images\\baklava.png',
+                    name_en: 'Royal Baklava',
+                    description_en: 'Baklava with gold and walnuts',
+                    details_en: 'Ingredients: Dough, walnuts, honey, sugar, edible gold.',
+                    pairing_en: 'Recommended wine: Bermet'
+                }
+            ]
+        };
+
+        // Initialize
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loadingScreen');
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 1500);
+            
+            // Initialize ash particles
+            initAshParticles();
+            
+            // Initialize menu
+            loadMenuData('all');
+            
+            // Initialize scroll animations
+            initScrollAnimations();
+            
+            // Initialize timeline animations
+            initTimelineAnimations();
+            
+            // Set minimum date for reservation
+            const today = new Date();
+            const dateInput = document.getElementById('date');
+            if(dateInput) {
+                dateInput.min = today.toISOString().split('T')[0];
+            }
+            
+            // Initialize FAQ functionality
+            initFAQ();
+            
+            // Initialize review rating
+            initReviewRating();
+            
+            // Initialize form handlers
+            initFormHandlers();
+        });
+
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if(targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            // Update nav links
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Add active class to current page link
+            const activeLink = document.querySelector(`.nav-links a[onclick="showPage('${pageId}')"]`);
+            if(activeLink) activeLink.classList.add('active');
+            
+            // Close mobile menu
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.remove('active');
+            document.getElementById('mobileMenuBtn').innerHTML = '<i class="fas fa-bars"></i>';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Reinitialize animations for the new page
+            setTimeout(() => {
+                initScrollAnimations();
+                initTimelineAnimations();
+            }, 100);
+        }
+
+        // Language Switching - FIXED TO TRANSLATE WHOLE PAGE
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update body class for CSS translation display
+            document.body.className = lang;
+            
+            // Update active language buttons
+            const langButtons = document.querySelectorAll('.lang-switch button');
+            langButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Update desktop buttons
+            const langSr = document.getElementById('langSr');
+            const langEn = document.getElementById('langEn');
+            if(langSr && langEn) {
+                if(lang === 'sr') langSr.classList.add('active');
+                else langEn.classList.add('active');
+            }
+            
+            // Update mobile buttons
+            const langSrMobile = document.getElementById('langSrMobile');
+            const langEnMobile = document.getElementById('langEnMobile');
+            if(langSrMobile && langEnMobile) {
+                if(lang === 'sr') langSrMobile.classList.add('active');
+                else langEnMobile.classList.add('active');
+            }
+            
+            // Update page title and meta description
+            const title = document.querySelector('title');
+            const metaDesc = document.querySelector('meta[name="description"]');
+            
+            if(lang === 'sr') {
+                title.textContent = 'ZLATNA PIVNIJA - Najluksuzniji restoran';
+                if(metaDesc) metaDesc.setAttribute('content', 'ZLATNA PIVNIJA — najluksuzniji srpski restoran u srcu Beograda. Rezervišite mesto u legendi.');
+            } else {
+                title.textContent = 'GOLDEN BREWHOUSE - The most luxurious restaurant';
+                if(metaDesc) metaDesc.setAttribute('content', 'GOLDEN BREWHOUSE - the most luxurious Serbian restaurant in the heart of Belgrade. Reserve your place in the legend.');
+            }
+            
+            // Update menu items if on menu page
+            if(document.getElementById('menu').classList.contains('active')) {
+                const activeCategory = document.querySelector('.category-btn.active');
+                if(activeCategory) {
+                    const categoryText = activeCategory.textContent.trim().toLowerCase();
+                    let category = 'all';
+                    if(categoryText === 'zakuska' || categoryText === 'appetizer') category = 'zakuska';
+                    else if(categoryText === 'supa' || categoryText === 'soup of the day') category = 'supa';
+                    else if(categoryText === 'roštilj' || categoryText === 'grill') category = 'roštilj';
+                    else if(categoryText === 'glavno' || categoryText === 'royal main') category = 'glavno';
+                    else if(categoryText === 'dezert' || categoryText === 'imperial desserts') category = 'dezert';
+                    
+                    loadMenuData(category);
+                }
+            }
+            
+            // Show a notification
+            const langName = lang === 'sr' ? 'Srpski' : 'English';
+            showNotification(`Language switched to ${langName}`, 'info');
+        }
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mobileNav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Ash Particles
+        function initAshParticles() {
+            const ashContainer = document.getElementById('ashParticles');
+            if(!ashContainer) return;
+            
+            function createAsh() {
+                const ash = document.createElement('div');
+                ash.classList.add('ash');
+                ash.style.left = Math.random() * 100 + '%';
+                ash.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                ash.style.animationDelay = Math.random() * 2 + 's';
+                ashContainer.appendChild(ash);
+                
+                setTimeout(() => {
+                    ash.remove();
+                }, 8000);
+            }
+
+            // Create initial ashes
+            for(let i = 0; i < 15; i++) {
+                setTimeout(createAsh, i * 300);
+            }
+            
+            // Continue creating ashes
+            setInterval(createAsh, 800);
+        }
+
+        // Menu Functions
+        function loadMenuData(category) {
+            const menuGrid = document.getElementById('menuGrid');
+            if(!menuGrid) return;
+            
+            menuGrid.innerHTML = '';
+            
+            let items = [];
+            if(category === 'all') {
+                Object.values(menuData).forEach(cat => items = items.concat(cat));
+            } else {
+                items = menuData[category] || [];
+            }
+            
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'menu-card fade-in';
+                
+                // Use current language
+                const name = currentLang === 'sr' ? item.name_sr : item.name_en;
+                const description = currentLang === 'sr' ? item.description_sr : item.description_en;
+                const details = currentLang === 'sr' ? item.details_sr : item.details_en;
+                const pairing = currentLang === 'sr' ? item.pairing_sr : item.pairing_en;
+                
+                card.innerHTML = `
+                    <div class="image"><img src="${item.image}" alt="${name}"></div>
+                    <div class="item-header">
+                        <div class="item-name">${name}</div>
+                        <div class="item-price">${item.price} <i class="fas fa-coins"></i></div>
+                    </div>
+                    <div class="item-description">${description}</div>
+                    <div class="item-details">${details}</div>
+                    <div class="wine-pairing"><i class="fas fa-wine-glass"></i> ${pairing}</div>
+                `;
+                
+                // Add click to show image gallery
+                card.addEventListener('click', () => {
+                    showImageGallery(item.image, name);
+                });
+                
+                menuGrid.appendChild(card);
+            });
+            
+            // Reinitialize scroll animations
+            setTimeout(initScrollAnimations, 100);
+        }
+
+        function filterMenu(category) {
+            // Update active button
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Load data
+            loadMenuData(category);
+        }
+
+        // Event Functions
+        function quickReserve(roomName) {
+            showPage('reservation');
+            // Add room name to wishes field after a short delay
+            setTimeout(() => {
+                const wishes = document.getElementById('wishes');
+                if(wishes) {
+                    const roomText = currentLang === 'sr' ? 
+                        `Želim da rezervišem: ${roomName}` : 
+                        `I want to reserve: ${roomName === 'Soba cara' ? "Emperor's Room" : roomName === 'Vinski podrum' ? 'Wine Cellar' : 'River Terrace'}`;
+                    wishes.value = roomText;
+                }
+            }, 500);
+        }
+
+        // Review Rating - FIXED TO HIGHLIGHT ALL STARS UP TO CLICKED
+        function initReviewRating() {
+            const stars = document.querySelectorAll('.rating-stars i');
+            
+            stars.forEach(star => {
+                // Click event
+                star.addEventListener('click', () => {
+                    selectedRating = parseInt(star.getAttribute('data-rating'));
+                    updateStarDisplay();
+                });
+                
+                // Hover event
+                star.addEventListener('mouseenter', () => {
+                    const rating = parseInt(star.getAttribute('data-rating'));
+                    stars.forEach((s, i) => {
+                        if(i < rating) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                });
+            });
+            
+            // Reset display on mouse leave
+            document.getElementById('ratingStars').addEventListener('mouseleave', () => {
+                updateStarDisplay();
+            });
+        }
+
+        function updateStarDisplay() {
+            const stars = document.querySelectorAll('.rating-stars i');
+            stars.forEach((star, i) => {
+                if(i < selectedRating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        // Gallery Functions
+        function showImageGallery(image, name) {
+            const modal = document.getElementById('galleryModal');
+            const img = document.getElementById('galleryImage');
+            
+            img.src = image;
+            img.alt = name;
+            
+            modal.classList.add('active');
+        }
+
+        function closeGallery() {
+            const modal = document.getElementById('galleryModal');
+            modal.classList.remove('active');
+        }
+
+        // Scroll Animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Timeline Animations
+        function initTimelineAnimations() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            if(timelineItems.length === 0) return;
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            timelineItems.forEach(item => {
+                observer.observe(item);
+                
+                // Add click animation
+                item.addEventListener('click', () => {
+                    item.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        item.style.transform = 'scale(1)';
+                    }, 100);
+                });
+            });
+        }
+
+        // FAQ Functionality
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if(otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        }
+
+        // Form Handlers
+        function initFormHandlers() {
+            // Reservation Form
+            const reservationForm = document.getElementById('reservationForm');
+            if(reservationForm) {
+                reservationForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    handleReservationSubmit(e.target);
+                });
+            }
+
+            // Review Form
+            const reviewForm = document.getElementById('reviewForm');
+            if(reviewForm) {
+                reviewForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    handleReviewSubmit(e.target);
+                });
+            }
+        }
+
+        function handleReservationSubmit(form) {
+            // Validation
+            const required = form.querySelectorAll('input[required], select[required], textarea[required]');
+            let valid = true;
+            
+            required.forEach(field => {
+                if(!field.value) {
+                    valid = false;
+                    field.style.borderColor = '#ff6b6b';
+                    field.style.boxShadow = '0 0 10px rgba(255, 107, 107, 0.5)';
+                } else {
+                    field.style.borderColor = '';
+                    field.style.boxShadow = '';
+                }
+            });
+            
+            // Check terms
+            const terms = document.getElementById('terms');
+            if(!terms.checked) {
+                valid = false;
+                terms.parentElement.style.color = '#ff6b6b';
+            } else {
+                terms.parentElement.style.color = '';
+            }
+            
+            if(!valid) {
+                const msg = currentLang === 'sr' ? 'Molimo popunite sva obavezna polja' : 'Please fill in all required fields';
+                showNotification(msg, 'error');
+                return;
+            }
+            
+            // Get values
+            const data = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                guests: document.getElementById('guests').value,
+                level: document.getElementById('level').value,
+                wishes: document.getElementById('wishes').value,
+                phoneCall: document.getElementById('phoneCall').checked,
+                flowers: document.getElementById('flowers').checked
+            };
+            
+            // Show success
+            const successMsg = currentLang === 'sr' ? 
+                'Vaša rezervacija je uspešno poslata! Kontakiraćemo Vas uskoro.' : 
+                'Your reservation has been successfully sent! We will contact you soon.';
+            showNotification(successMsg, 'success');
+            
+            // Log for demo
+            console.log('Reservation Data:', data);
+            
+            // Reset form
+            form.reset();
+            
+            // Add celebration effect
+            addCelebrationEffect();
+        }
+
+        function handleReviewSubmit(form) {
+            if(selectedRating === 0) {
+                const msg = currentLang === 'sr' ? 'Molimo ocenite restoran' : 'Please rate the restaurant';
+                showNotification(msg, 'error');
+                return;
+            }
+            
+            const required = form.querySelectorAll('input[required], textarea[required]');
+            let valid = true;
+            
+            required.forEach(field => {
+                if(!field.value) {
+                    valid = false;
+                    field.style.borderColor = '#ff6b6b';
+                    field.style.boxShadow = '0 0 10px rgba(255, 107, 107, 0.5)';
+                } else {
+                    field.style.borderColor = '';
+                    field.style.boxShadow = '';
+                }
+            });
+            
+            if(!valid) {
+                const msg = currentLang === 'sr' ? 'Molimo popunite sva obavezna polja' : 'Please fill in all required fields';
+                showNotification(msg, 'error');
+                return;
+            }
+            
+            const data = {
+                name: document.getElementById('reviewName').value,
+                email: document.getElementById('reviewEmail').value,
+                rating: selectedRating,
+                text: document.getElementById('reviewText').value
+            };
+            
+            const successMsg = currentLang === 'sr' ? 
+                'Hvala na recenziji! Vaše mišljenje nam je važno.' : 
+                'Thank you for your review! Your opinion is important to us.';
+            showNotification(successMsg, 'success');
+            console.log('Review Data:', data);
+            
+            form.reset();
+            selectedRating = 0;
+            updateStarDisplay();
+            addCelebrationEffect();
+        }
+
+        // Notification System
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 90px;
+                right: 20px;
+                background: ${type === 'error' ? '#ff6b6b' : type === 'success' ? '#4CAF50' : 'var(--zlato)'};
+                color: ${type === 'error' ? 'white' : type === 'success' ? 'white' : 'var(--crna)'};
+                padding: 1rem 1.5rem;
+                border-radius: 5px;
+                z-index: 2000;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 500;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                transform: translateX(150%);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(150%)';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Celebration Effect
+        function addCelebrationEffect() {
+            const colors = ['#D4AF37', '#7B1123', '#F5F5F5'];
+            
+            for(let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.cssText = `
+                        position: fixed;
+                        width: 10px;
+                        height: 10px;
+                        background: ${colors[Math.floor(Math.random() * colors.length)]};
+                        top: 50%;
+                        left: 50%;
+                        z-index: 2000;
+                        pointer-events: none;
+                        transform: translate(-50%, -50%);
+                    `;
+                    
+                    // Random direction and animation
+                    const angle = (Math.PI * 2 * i) / 20;
+                    const velocity = 2 + Math.random() * 3;
+                    const tx = Math.cos(angle) * 100 * velocity;
+                    const ty = Math.sin(angle) * 100 * velocity;
+                    
+                    confetti.style.animation = `celebrate 1s ease-out forwards`;
+                    confetti.style.setProperty('--tx', tx + 'px');
+                    confetti.style.setProperty('--ty', ty + 'px');
+                    
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 1000);
+                }, i * 50);
+            }
+            
+            // Add CSS animation for confetti
+            if(!document.getElementById('celebrateStyle')) {
+                const style = document.createElement('style');
+                style.id = 'celebrateStyle';
+                style.textContent = `
+                    @keyframes celebrate {
+                        0% {
+                            transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                            opacity: 1;
+                        }
+                        100% {
+                            transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0) rotate(360deg);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        // Close modal on escape
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'Escape') {
+                closeGallery();
+            }
+        });
+
+        // Close modal on background click
+        document.getElementById('galleryModal').addEventListener('click', (e) => {
+            if(e.target === e.currentTarget) {
+                closeGallery();
+            }
+        });
+
+        // Smooth scroll for footer links
+        document.querySelectorAll('footer a[onclick^="showPage"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = link.getAttribute('onclick').match(/'([^']+)'/)[1];
+                showPage(page);
+            });
+        });
+
+        // Add hover effect to all buttons
+        document.addEventListener('mouseover', (e) => {
+            if(e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
+                e.target.style.transition = 'all 0.2s ease';
+            }
+        });
+    </script>
+</body>
+</html>
